@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="kurzus_style.css">
+    <title>Kurzusok és Diákok Kezelése</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Kurzus és Diák Kezelő</h1>
+
+        <button id="loadCourses" class="button">Kurzusok betöltése</button>
+        <button id="loadStudents" class="button">Diákok betöltése</button>
+
+        <h2>Kurzusok</h2>
+        <ul id="coursesList"></ul>
+
+        <h3>Új kurzus létrehozása</h3>
+        <input type="text" id="newCourseName" placeholder="Kurzus neve">
+        <button id="addCourseBtn" class="button">Hozzáadás</button>
+
+        <h2>Diákok</h2>
+        <ul id="studentsList"></ul>
+
+        <h3>Új diák hozzáadása</h3>
+        <input type="text" id="newStudentName" placeholder="Diák neve">
+        <button id="addStudentBtn" class="button">Hozzáadás</button>
+    </div>
+
+    <script src="kurzus_script.js"></script>
+</body>
+</html>
