@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const apiCoursesUrl = 'https://vvri.pythonanywhere.com/api/courses/';
-    const apiStudentsUrl = 'https://vvri.pythonanywhere.com/api/students/';
+    const apiCoursesUrl = 'https://vvri.pythonanywhere.com/api/courses';
+    const apiStudentsUrl = 'https://vvri.pythonanywhere.com/api/students';
     
     const coursesList = document.getElementById('coursesList');
     const studentsList = document.getElementById('studentsList');
@@ -55,11 +55,16 @@ document.addEventListener('DOMContentLoaded', () => {
         .catch(error => console.error('Hiba a kurzus hozzáadásakor:', error));
     });
 
-    function deleteCourse(id) {
-        fetch(`${apiCoursesUrl}${id}/`, { method: 'DELETE' })
-            .then(() => fetchCourses())
-            .catch(error => console.error('Hiba a kurzus törlésekor:', error));
-    }
+    fetch(apiCoursesUrl, {
+        method: 'DELETE',
+        headers: {
+            "Content-Type": "application/json"
+        }
+    })
+    .then(response => response.json())
+    .then(data => console.log("Sikeres törlés:", data))
+    .catch(error => console.error("Hiba a kurzus törlésekor:", error));
+    
 
     loadStudentsBtn.addEventListener('click', fetchStudents);
 
@@ -92,15 +97,16 @@ document.addEventListener('DOMContentLoaded', () => {
         fetch(apiStudentsUrl, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ name: studentName }),
+            body: JSON.stringify({ name: "Példa Diák" }),
         })
         .then(response => response.json())
         .then(() => {
             newStudentNameInput.value = '';
             fetchStudents();
         })
-        .catch(error => console.error('Hiba a diák hozzáadásakor:', error));
-    });
+        .catch(error => console.error('Hiba a kurzus hozzáadásakor:', error));
+
+    })    
 
     function deleteStudent(id) {
         fetch(`${apiStudentsUrl}${id}/`, { method: 'DELETE' })
